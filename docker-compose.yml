@@ -1,0 +1,27 @@
+version: '3'
+services:
+    app:
+        image : node
+        restart: always  
+        ports:
+            - "4000:4000"
+        links:
+            - db
+        working_dir : /var/www
+        volumes: 
+            - C:\Users\kter16\DokrTP\TpDockerCompose:/var/www
+        command: npm start
+        
+    db:
+        image: mysql:5.7
+        volumes:
+            - db_data:/var/lib/mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: kter
+            MYSQL_DATABASE: kterDB
+            MYSQL_USER: user
+            MYSQL_PASSWORD: compose
+    
+volumes:
+  db_data: {}
